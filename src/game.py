@@ -13,7 +13,8 @@ class DealOrNoDealGame:
         self.boxes = self._randomize_boxes(amounts)
         self.player_type = player_type
         self.pause_between_rounds = pause_between_rounds
-        self.player_box = None
+        self.player_box_amount = None
+        self.player_box_key = None
         self.banker = Banker()
         self.contestant = Contestant(player_type)
 
@@ -28,8 +29,10 @@ class DealOrNoDealGame:
 
     def setup(self):
         # Player selects a box to keep
-        self.player_box = random.choice(list(self.boxes.keys()))
-        print(f"You have chosen box {self.player_box} to keep until the end.")
+        self.player_box_key = random.choice(list(self.boxes.keys()))
+        self.player_box_amount = self.boxes[self.player_box_key]
+        del self.boxes[self.player_box_key]
+        print(f"You have chosen box {self.player_box_key} to keep until the end.")
 
     def play(self):
         self.setup()
@@ -59,4 +62,4 @@ class DealOrNoDealGame:
                 input("Press Enter to continue to the next round...")
 
         print("\nFinal round! Revealing your chosen box...")
-        print(f"Your box {self.player_box} contained £{self.boxes[self.player_box]:,.2f}")
+        print(f"Your box {self.player_box_key} contained £{self.player_box_amount:,.2f}")

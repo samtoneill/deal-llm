@@ -2,7 +2,7 @@ from game import DealOrNoDealGame
 
 def main():
     print("Welcome to Deal or No Deal!")
-    mode = input("Who will play the game? (human/llm): ").strip().lower()
+    mode = input("Who will play the game? (human/randon/llm): ").strip().lower()
     pause_between_rounds = False
 
     if mode == "llm":
